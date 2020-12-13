@@ -21,7 +21,7 @@ epochs = 3
 log_step = 10
 save_step = 1000
 batch_size = 128
-num_workers = 2
+num_workers = 0
 
 data_transform = transforms.Compose([
     transforms.RandomCrop(224),

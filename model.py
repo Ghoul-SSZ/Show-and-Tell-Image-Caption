@@ -78,11 +78,11 @@ class Decoder(nn.Module):
         outputs = self.linear(hiddens[0])
         return outputs
 
-    def sample(self, features, states=None):
+    def sample(self, features, states=None, max_seg_length=20):
         """Generate captions for given image features using greedy search."""
         sampled_ids = []
         inputs = features.unsqueeze(1)
-        for i in range(self.max_seg_length):
+        for i in range(max_seg_length):
             hiddens, states = self.lstm(inputs, states)          # hiddens: (batch_size, 1, hidden_size)
             outputs = self.linear(hiddens.squeeze(1))            # outputs:  (batch_size, vocab_size)
             _, predicted = outputs.max(1)                        # predicted: (batch_size)
